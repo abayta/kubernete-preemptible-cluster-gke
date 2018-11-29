@@ -1,0 +1,15 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: jenkins-ingress
+  namespace: ci
+  annotations:
+    kubernetes.io/ingress.class: nginx
+spec:
+  rules:
+  - host: jenkins.digital.com
+    http:
+      paths:
+      - backend:
+          serviceName: cd-jenkins
+          servicePort: 8080
