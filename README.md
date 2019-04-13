@@ -1,5 +1,4 @@
-# kubernete-preemptible-cluster-gke
-Deploy kubernetes cluster with preemptible instances on GKE
+Deploy kubernetes cluster with preemptible instances on GKE.
 
 ## Create clusters
 
@@ -39,15 +38,14 @@ kubectl create clusterrolebinding tiller-admin-binding --clusterrole=cluster-adm
 
 ./helm install -n cd-jenkins stable/jenkins -f jenkins/values.yml --namespace ci --wait
 
-## values.yml para jenkins
-##
-## Master: NodePort
-## 
-## This is because after create Jenkins we will create a HTTP load balancer
-## using an ingress and we will use this load balancer like the front to all
-## our environments
-##
-
+# values.yml para jenkins
+#
+# Master: NodePort
+# 
+# This is because after create Jenkins we will create a HTTP load balancer
+# using an ingress and we will use this load balancer like the front to all
+# our environments
+#
 ## Apply ingress to have the entrypoints for the all environtments
 
 kubectl apply -f ingress/ingress.yml
