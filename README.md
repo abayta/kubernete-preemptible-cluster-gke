@@ -2,7 +2,8 @@ Deploy kubernetes cluster with preemptible instances on GKE.
 
 ## Create clusters
 
-Go to terraform folder: cd teerraform
+Go to terraform folder: 
+`cd terraform`
 
 ## Download cluster credentials
 
@@ -10,9 +11,13 @@ gcloud container clusters get-credentials cluster-name
 
 ## Descargar helm: https://github.com/helm/helm/releases (Update to current version)
 
-wget https://storage.googleapis.com/kubernetes-helm/helm-v2.13.0-linux-amd64.tar.gz
-tar zxfv v2.13.0.tar.gz
-cp linux-amd64/helm .
+```shell
+latest=$(wget -qO- https://github.com/kubernetes/helm/releases | sed -n '/Latest release<\/a>/,$p' | grep -oE 'v[0-9]+\.[0-9]+\.[0-9]+' |head -1)
+wget https://storage.googleapis.com/kubernetes-helm/helm-$latest-linux-amd64.tar.gz
+tar -zxvf helm-$latest-linux-amd64.tar.gz
+mv linux-amd64 /helm /usr/local/bin/helm
+sudo mv linux-amd64/helm /usr/local/bin/helm
+```
 
 ## Add your user like cluster admin in the cluster's RBAC
 
